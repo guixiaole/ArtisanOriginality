@@ -1,0 +1,136 @@
+.masthead>a,
+a:focus,
+a:hover {
+  font-size: 15px;
+  color: #fff;
+}
+h1,h1:focus{
+	font-size: 44px;
+	color: #fff;
+	cursor: pointer;
+}
+h1:before
+  {
+  content:url(../images/jx_32x32.ico);
+  margin-right: 20px;
+  bottom: 0;
+  }
+html,
+body {
+  height: 100%;
+  text-align: center;
+  background-color: #fff;
+}
+.inner {
+  padding: 30px;
+}
+/*
+ * Header
+ */
+ .masthead{
+ 	width: 100%;
+ 	position: fixed;
+ 	top: 0;
+ 	z-index: 1;
+	background-color: #333;
+ }
+.masthead-brand {
+  margin-top: 3px;
+  /*margin-bottom: 10px;*/
+}
+
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
+    float: left;
+    margin-left: 50px;
+    color: #fff;
+  }
+  .masthead-nav {
+    float: right;
+  }
+}
+
+.container{
+	width: 100%;
+	height:auto;
+	z-index: 0;
+	/*background-color: #DBDBDB;*/
+}
+/* @media (min-width: 1000px){
+  .container{
+    width: 1170px;
+  }
+}
+@media (min-width: 992px){
+  .container {
+    width: 970px;
+  }
+} */
+@media (min-width: 768px){
+  .container {
+    width: 1150px;
+  }
+}
+
+/*login*/
+.login-box{
+  position: relative;
+  width: 200px;
+  height: 300px;
+  margin:0px auto;
+  text-align:center;
+}
+.register-box{
+  position: relative;
+  width: 200px;
+  height: 300px;
+  margin:0px auto;
+  text-align:center;
+}
+.form-signin-heading{
+  color: #000;
+}
+#inputverify,#getverify{
+	width: 50%;
+	display: inline-block;
+}
+.remember-me{
+	color: #000;
+}
+.form-signin-heading{
+	color: #000;
+}
+.tab-text-regi{
+	color:#000;
+}
+.tab-email-regi{
+	color:#000;
+}

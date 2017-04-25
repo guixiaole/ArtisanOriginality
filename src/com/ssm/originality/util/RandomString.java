@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RandomString {
      /**
-      * 随机生成6个字符串
+      * 随机生成以jx_为前缀的9个字符串
       * @return  String
       */
 	public static String getString(){
@@ -16,7 +16,8 @@ public class RandomString {
 	        int number = random.nextInt(base.length());     
 	        sb.append(base.charAt(number));     
 	    }     
-	    return sb.toString();     
+	    String name="jx_"+sb.toString();
+	    return name;     
 	}
 
 }

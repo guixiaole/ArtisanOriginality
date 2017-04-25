@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.originality.mapper.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.originality.po.Customer" >
+    <id column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="csex" property="csex" jdbcType="VARCHAR" />
+    <result column="cEmail" property="cemail" jdbcType="VARCHAR" />
+    <result column="cphone" property="cphone" jdbcType="VARCHAR" />
+    <result column="caddress" property="caddress" jdbcType="VARCHAR" />
+    <result column="cjob" property="cjob" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    c_id, cname, csex, cEmail, cphone, caddress, cjob
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.originality.po.CustomerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where c_id = #{cId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer
+    where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.originality.po.CustomerExample" >
+    delete from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.originality.po.Customer" >
+    insert into customer (c_id, cname, csex, 
+      cEmail, cphone, caddress, 
+      cjob)
+    values (#{cId,jdbcType=INTEGER}, #{cname,jdbcType=VARCHAR}, #{csex,jdbcType=VARCHAR}, 
+      #{cemail,jdbcType=VARCHAR}, #{cphone,jdbcType=VARCHAR}, #{caddress,jdbcType=VARCHAR}, 
+      #{cjob,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.originality.po.Customer" >
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+      <if test="csex != null" >
+        csex,
+      </if>
+      <if test="cemail != null" >
+        cEmail,
+      </if>
+      <if test="cphone != null" >
+        cphone,
+      </if>
+      <if test="caddress != null" >
+        caddress,
+      </if>
+      <if test="cjob != null" >
+        cjob,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="csex != null" >
+        #{csex,jdbcType=VARCHAR},
+      </if>
+      <if test="cemail != null" >
+        #{cemail,jdbcType=VARCHAR},
+      </if>
+      <if test="cphone != null" >
+        #{cphone,jdbcType=VARCHAR},
+      </if>
+      <if test="caddress != null" >
+        #{caddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cjob != null" >
+        #{cjob,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.originality.po.CustomerExample" resultType="java.lang.Integer" >
+    select count(*) from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update customer
+    <set >
+      <if test="record.cId != null" >
+        c_id = #{record.cId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cname != null" >
+        cname = #{record.cname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.csex != null" >
+        csex = #{record.csex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cemail != null" >
+        cEmail = #{record.cemail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cphone != null" >
+        cphone = #{record.cphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caddress != null" >
+        caddress = #{record.caddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cjob != null" >
+        cjob = #{record.cjob,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update customer
+    set c_id = #{record.cId,jdbcType=INTEGER},
+      cname = #{record.cname,jdbcType=VARCHAR},
+      csex = #{record.csex,jdbcType=VARCHAR},
+      cEmail = #{record.cemail,jdbcType=VARCHAR},
+      cphone = #{record.cphone,jdbcType=VARCHAR},
+      caddress = #{record.caddress,jdbcType=VARCHAR},
+      cjob = #{record.cjob,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.originality.po.Customer" >
+    update customer
+    <set >
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="csex != null" >
+        csex = #{csex,jdbcType=VARCHAR},
+      </if>
+      <if test="cemail != null" >
+        cEmail = #{cemail,jdbcType=VARCHAR},
+      </if>
+      <if test="cphone != null" >
+        cphone = #{cphone,jdbcType=VARCHAR},
+      </if>
+      <if test="caddress != null" >
+        caddress = #{caddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cjob != null" >
+        cjob = #{cjob,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.originality.po.Customer" >
+    update customer
+    set cname = #{cname,jdbcType=VARCHAR},
+      csex = #{csex,jdbcType=VARCHAR},
+      cEmail = #{cemail,jdbcType=VARCHAR},
+      cphone = #{cphone,jdbcType=VARCHAR},
+      caddress = #{caddress,jdbcType=VARCHAR},
+      cjob = #{cjob,jdbcType=VARCHAR}
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+</mapper>

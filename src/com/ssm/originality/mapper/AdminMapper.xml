@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.originality.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.originality.po.Admin" >
+    <id column="ad_id" property="adId" jdbcType="INTEGER" />
+    <result column="adname" property="adname" jdbcType="VARCHAR" />
+    <result column="adsex" property="adsex" jdbcType="VARCHAR" />
+    <result column="ademail" property="ademail" jdbcType="VARCHAR" />
+    <result column="adphone" property="adphone" jdbcType="INTEGER" />
+    <result column="adpassword" property="adpassword" jdbcType="VARCHAR" />
+    <result column="adusername" property="adusername" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ad_id, adname, adsex, ademail, adphone, adpassword, adusername
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.originality.po.AdminExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.originality.po.AdminExample" >
+    delete from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.originality.po.Admin" >
+    insert into admin (ad_id, adname, adsex, 
+      ademail, adphone, adpassword, 
+      adusername)
+    values (#{adId,jdbcType=INTEGER}, #{adname,jdbcType=VARCHAR}, #{adsex,jdbcType=VARCHAR}, 
+      #{ademail,jdbcType=VARCHAR}, #{adphone,jdbcType=INTEGER}, #{adpassword,jdbcType=VARCHAR}, 
+      #{adusername,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.originality.po.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        ad_id,
+      </if>
+      <if test="adname != null" >
+        adname,
+      </if>
+      <if test="adsex != null" >
+        adsex,
+      </if>
+      <if test="ademail != null" >
+        ademail,
+      </if>
+      <if test="adphone != null" >
+        adphone,
+      </if>
+      <if test="adpassword != null" >
+        adpassword,
+      </if>
+      <if test="adusername != null" >
+        adusername,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adId != null" >
+        #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="adname != null" >
+        #{adname,jdbcType=VARCHAR},
+      </if>
+      <if test="adsex != null" >
+        #{adsex,jdbcType=VARCHAR},
+      </if>
+      <if test="ademail != null" >
+        #{ademail,jdbcType=VARCHAR},
+      </if>
+      <if test="adphone != null" >
+        #{adphone,jdbcType=INTEGER},
+      </if>
+      <if test="adpassword != null" >
+        #{adpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adusername != null" >
+        #{adusername,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.originality.po.AdminExample" resultType="java.lang.Integer" >
+    select count(*) from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update admin
+    <set >
+      <if test="record.adId != null" >
+        ad_id = #{record.adId,jdbcType=INTEGER},
+      </if>
+      <if test="record.adname != null" >
+        adname = #{record.adname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adsex != null" >
+        adsex = #{record.adsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ademail != null" >
+        ademail = #{record.ademail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adphone != null" >
+        adphone = #{record.adphone,jdbcType=INTEGER},
+      </if>
+      <if test="record.adpassword != null" >
+        adpassword = #{record.adpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adusername != null" >
+        adusername = #{record.adusername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update admin
+    set ad_id = #{record.adId,jdbcType=INTEGER},
+      adname = #{record.adname,jdbcType=VARCHAR},
+      adsex = #{record.adsex,jdbcType=VARCHAR},
+      ademail = #{record.ademail,jdbcType=VARCHAR},
+      adphone = #{record.adphone,jdbcType=INTEGER},
+      adpassword = #{record.adpassword,jdbcType=VARCHAR},
+      adusername = #{record.adusername,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.originality.po.Admin" >
+    update admin
+    <set >
+      <if test="adname != null" >
+        adname = #{adname,jdbcType=VARCHAR},
+      </if>
+      <if test="adsex != null" >
+        adsex = #{adsex,jdbcType=VARCHAR},
+      </if>
+      <if test="ademail != null" >
+        ademail = #{ademail,jdbcType=VARCHAR},
+      </if>
+      <if test="adphone != null" >
+        adphone = #{adphone,jdbcType=INTEGER},
+      </if>
+      <if test="adpassword != null" >
+        adpassword = #{adpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adusername != null" >
+        adusername = #{adusername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.originality.po.Admin" >
+    update admin
+    set adname = #{adname,jdbcType=VARCHAR},
+      adsex = #{adsex,jdbcType=VARCHAR},
+      ademail = #{ademail,jdbcType=VARCHAR},
+      adphone = #{adphone,jdbcType=INTEGER},
+      adpassword = #{adpassword,jdbcType=VARCHAR},
+      adusername = #{adusername,jdbcType=VARCHAR}
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+    <!-- 管理员登录 -->
+  <select id="loginByUser" parameterType="com.ssm.originality.po.Admin" resultType="com.ssm.originality.po.Admin">
+  SELECT * FROM admin WHERE adusername=#{adusername} AND adpassword=#{adpassword};
+  </select>
+</mapper>

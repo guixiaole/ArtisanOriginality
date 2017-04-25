@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.originality.mapper.CashRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.originality.po.CashRecord" >
+    <id column="record_id" property="recordId" jdbcType="INTEGER" />
+    <result column="ac_id" property="acId" jdbcType="INTEGER" />
+    <result column="be_money" property="beMoney" jdbcType="DOUBLE" />
+    <result column="tx_money" property="txMoney" jdbcType="DOUBLE" />
+    <result column="af_money" property="afMoney" jdbcType="DOUBLE" />
+    <result column="tx_type" property="txType" jdbcType="TINYINT" />
+    <result column="record_info" property="recordInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    record_id, ac_id, be_money, tx_money, af_money, tx_type, record_info
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.originality.po.CashRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cash_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cash_record
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cash_record
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.originality.po.CashRecordExample" >
+    delete from cash_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.originality.po.CashRecord" >
+    insert into cash_record (record_id, ac_id, be_money, 
+      tx_money, af_money, tx_type, 
+      record_info)
+    values (#{recordId,jdbcType=INTEGER}, #{acId,jdbcType=INTEGER}, #{beMoney,jdbcType=DOUBLE}, 
+      #{txMoney,jdbcType=DOUBLE}, #{afMoney,jdbcType=DOUBLE}, #{txType,jdbcType=TINYINT}, 
+      #{recordInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.originality.po.CashRecord" >
+    insert into cash_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        record_id,
+      </if>
+      <if test="acId != null" >
+        ac_id,
+      </if>
+      <if test="beMoney != null" >
+        be_money,
+      </if>
+      <if test="txMoney != null" >
+        tx_money,
+      </if>
+      <if test="afMoney != null" >
+        af_money,
+      </if>
+      <if test="txType != null" >
+        tx_type,
+      </if>
+      <if test="recordInfo != null" >
+        record_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="acId != null" >
+        #{acId,jdbcType=INTEGER},
+      </if>
+      <if test="beMoney != null" >
+        #{beMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="txMoney != null" >
+        #{txMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="afMoney != null" >
+        #{afMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="txType != null" >
+        #{txType,jdbcType=TINYINT},
+      </if>
+      <if test="recordInfo != null" >
+        #{recordInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.originality.po.CashRecordExample" resultType="java.lang.Integer" >
+    select count(*) from cash_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cash_record
+    <set >
+      <if test="record.recordId != null" >
+        record_id = #{record.recordId,jdbcType=INTEGER},
+      </if>
+      <if test="record.acId != null" >
+        ac_id = #{record.acId,jdbcType=INTEGER},
+      </if>
+      <if test="record.beMoney != null" >
+        be_money = #{record.beMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.txMoney != null" >
+        tx_money = #{record.txMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.afMoney != null" >
+        af_money = #{record.afMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.txType != null" >
+        tx_type = #{record.txType,jdbcType=TINYINT},
+      </if>
+      <if test="record.recordInfo != null" >
+        record_info = #{record.recordInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cash_record
+    set record_id = #{record.recordId,jdbcType=INTEGER},
+      ac_id = #{record.acId,jdbcType=INTEGER},
+      be_money = #{record.beMoney,jdbcType=DOUBLE},
+      tx_money = #{record.txMoney,jdbcType=DOUBLE},
+      af_money = #{record.afMoney,jdbcType=DOUBLE},
+      tx_type = #{record.txType,jdbcType=TINYINT},
+      record_info = #{record.recordInfo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.originality.po.CashRecord" >
+    update cash_record
+    <set >
+      <if test="acId != null" >
+        ac_id = #{acId,jdbcType=INTEGER},
+      </if>
+      <if test="beMoney != null" >
+        be_money = #{beMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="txMoney != null" >
+        tx_money = #{txMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="afMoney != null" >
+        af_money = #{afMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="txType != null" >
+        tx_type = #{txType,jdbcType=TINYINT},
+      </if>
+      <if test="recordInfo != null" >
+        record_info = #{recordInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.originality.po.CashRecord" >
+    update cash_record
+    set ac_id = #{acId,jdbcType=INTEGER},
+      be_money = #{beMoney,jdbcType=DOUBLE},
+      tx_money = #{txMoney,jdbcType=DOUBLE},
+      af_money = #{afMoney,jdbcType=DOUBLE},
+      tx_type = #{txType,jdbcType=TINYINT},
+      record_info = #{recordInfo,jdbcType=VARCHAR}
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+</mapper>

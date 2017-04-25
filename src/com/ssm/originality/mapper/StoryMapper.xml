@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.originality.mapper.StoryMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.originality.po.Story" >
+    <id column="story_id" property="storyId" jdbcType="INTEGER" />
+    <result column="ad_id" property="adId" jdbcType="INTEGER" />
+    <result column="a_id" property="aId" jdbcType="INTEGER" />
+    <result column="sh_id" property="shId" jdbcType="INTEGER" />
+    <result column="pro_id" property="proId" jdbcType="INTEGER" />
+    <result column="story_title" property="storyTitle" jdbcType="VARCHAR" />
+    <result column="story_content" property="storyContent" jdbcType="VARCHAR" />
+    <result column="story_time" property="storyTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    story_id, ad_id, a_id, sh_id, pro_id, story_title, story_content, story_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.originality.po.StoryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from story
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from story
+    where story_id = #{storyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from story
+    where story_id = #{storyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.originality.po.StoryExample" >
+    delete from story
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.originality.po.Story" >
+    insert into story (story_id, ad_id, a_id, 
+      sh_id, pro_id, story_title, 
+      story_content, story_time)
+    values (#{storyId,jdbcType=INTEGER}, #{adId,jdbcType=INTEGER}, #{aId,jdbcType=INTEGER}, 
+      #{shId,jdbcType=INTEGER}, #{proId,jdbcType=INTEGER}, #{storyTitle,jdbcType=VARCHAR}, 
+      #{storyContent,jdbcType=VARCHAR}, #{storyTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.originality.po.Story" >
+    insert into story
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storyId != null" >
+        story_id,
+      </if>
+      <if test="adId != null" >
+        ad_id,
+      </if>
+      <if test="aId != null" >
+        a_id,
+      </if>
+      <if test="shId != null" >
+        sh_id,
+      </if>
+      <if test="proId != null" >
+        pro_id,
+      </if>
+      <if test="storyTitle != null" >
+        story_title,
+      </if>
+      <if test="storyContent != null" >
+        story_content,
+      </if>
+      <if test="storyTime != null" >
+        story_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storyId != null" >
+        #{storyId,jdbcType=INTEGER},
+      </if>
+      <if test="adId != null" >
+        #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="aId != null" >
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="shId != null" >
+        #{shId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null" >
+        #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="storyTitle != null" >
+        #{storyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="storyContent != null" >
+        #{storyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="storyTime != null" >
+        #{storyTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.originality.po.StoryExample" resultType="java.lang.Integer" >
+    select count(*) from story
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update story
+    <set >
+      <if test="record.storyId != null" >
+        story_id = #{record.storyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.adId != null" >
+        ad_id = #{record.adId,jdbcType=INTEGER},
+      </if>
+      <if test="record.aId != null" >
+        a_id = #{record.aId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shId != null" >
+        sh_id = #{record.shId,jdbcType=INTEGER},
+      </if>
+      <if test="record.proId != null" >
+        pro_id = #{record.proId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storyTitle != null" >
+        story_title = #{record.storyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storyContent != null" >
+        story_content = #{record.storyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storyTime != null" >
+        story_time = #{record.storyTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update story
+    set story_id = #{record.storyId,jdbcType=INTEGER},
+      ad_id = #{record.adId,jdbcType=INTEGER},
+      a_id = #{record.aId,jdbcType=INTEGER},
+      sh_id = #{record.shId,jdbcType=INTEGER},
+      pro_id = #{record.proId,jdbcType=INTEGER},
+      story_title = #{record.storyTitle,jdbcType=VARCHAR},
+      story_content = #{record.storyContent,jdbcType=VARCHAR},
+      story_time = #{record.storyTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.originality.po.Story" >
+    update story
+    <set >
+      <if test="adId != null" >
+        ad_id = #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="aId != null" >
+        a_id = #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="shId != null" >
+        sh_id = #{shId,jdbcType=INTEGER},
+      </if>
+      <if test="proId != null" >
+        pro_id = #{proId,jdbcType=INTEGER},
+      </if>
+      <if test="storyTitle != null" >
+        story_title = #{storyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="storyContent != null" >
+        story_content = #{storyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="storyTime != null" >
+        story_time = #{storyTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where story_id = #{storyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.originality.po.Story" >
+    update story
+    set ad_id = #{adId,jdbcType=INTEGER},
+      a_id = #{aId,jdbcType=INTEGER},
+      sh_id = #{shId,jdbcType=INTEGER},
+      pro_id = #{proId,jdbcType=INTEGER},
+      story_title = #{storyTitle,jdbcType=VARCHAR},
+      story_content = #{storyContent,jdbcType=VARCHAR},
+      story_time = #{storyTime,jdbcType=VARCHAR}
+    where story_id = #{storyId,jdbcType=INTEGER}
+  </update>
+</mapper>

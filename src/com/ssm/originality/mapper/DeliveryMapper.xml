@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.originality.mapper.DeliveryMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.originality.po.Delivery" >
+    <id column="de_id" property="deId" jdbcType="INTEGER" />
+    <result column="ac_id" property="acId" jdbcType="INTEGER" />
+    <result column="de_province" property="deProvince" jdbcType="VARCHAR" />
+    <result column="de_city" property="deCity" jdbcType="VARCHAR" />
+    <result column="de_country" property="deCountry" jdbcType="VARCHAR" />
+    <result column="consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="de_phone" property="dePhone" jdbcType="INTEGER" />
+    <result column="de_email" property="deEmail" jdbcType="VARCHAR" />
+    <result column="post_code" property="postCode" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="VARCHAR" />
+    <result column="id_default" property="idDefault" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    de_id, ac_id, de_province, de_city, de_country, consignee, address, de_phone, de_email, 
+    post_code, add_time, id_default
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.originality.po.DeliveryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from delivery
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from delivery
+    where de_id = #{deId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from delivery
+    where de_id = #{deId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.originality.po.DeliveryExample" >
+    delete from delivery
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.originality.po.Delivery" >
+    insert into delivery (de_id, ac_id, de_province, 
+      de_city, de_country, consignee, 
+      address, de_phone, de_email, 
+      post_code, add_time, id_default
+      )
+    values (#{deId,jdbcType=INTEGER}, #{acId,jdbcType=INTEGER}, #{deProvince,jdbcType=VARCHAR}, 
+      #{deCity,jdbcType=VARCHAR}, #{deCountry,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{dePhone,jdbcType=INTEGER}, #{deEmail,jdbcType=VARCHAR}, 
+      #{postCode,jdbcType=INTEGER}, #{addTime,jdbcType=VARCHAR}, #{idDefault,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.originality.po.Delivery" >
+    insert into delivery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deId != null" >
+        de_id,
+      </if>
+      <if test="acId != null" >
+        ac_id,
+      </if>
+      <if test="deProvince != null" >
+        de_province,
+      </if>
+      <if test="deCity != null" >
+        de_city,
+      </if>
+      <if test="deCountry != null" >
+        de_country,
+      </if>
+      <if test="consignee != null" >
+        consignee,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="dePhone != null" >
+        de_phone,
+      </if>
+      <if test="deEmail != null" >
+        de_email,
+      </if>
+      <if test="postCode != null" >
+        post_code,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="idDefault != null" >
+        id_default,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deId != null" >
+        #{deId,jdbcType=INTEGER},
+      </if>
+      <if test="acId != null" >
+        #{acId,jdbcType=INTEGER},
+      </if>
+      <if test="deProvince != null" >
+        #{deProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="deCity != null" >
+        #{deCity,jdbcType=VARCHAR},
+      </if>
+      <if test="deCountry != null" >
+        #{deCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="dePhone != null" >
+        #{dePhone,jdbcType=INTEGER},
+      </if>
+      <if test="deEmail != null" >
+        #{deEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="idDefault != null" >
+        #{idDefault,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.originality.po.DeliveryExample" resultType="java.lang.Integer" >
+    select count(*) from delivery
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update delivery
+    <set >
+      <if test="record.deId != null" >
+        de_id = #{record.deId,jdbcType=INTEGER},
+      </if>
+      <if test="record.acId != null" >
+        ac_id = #{record.acId,jdbcType=INTEGER},
+      </if>
+      <if test="record.deProvince != null" >
+        de_province = #{record.deProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deCity != null" >
+        de_city = #{record.deCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deCountry != null" >
+        de_country = #{record.deCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consignee != null" >
+        consignee = #{record.consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dePhone != null" >
+        de_phone = #{record.dePhone,jdbcType=INTEGER},
+      </if>
+      <if test="record.deEmail != null" >
+        de_email = #{record.deEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postCode != null" >
+        post_code = #{record.postCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idDefault != null" >
+        id_default = #{record.idDefault,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update delivery
+    set de_id = #{record.deId,jdbcType=INTEGER},
+      ac_id = #{record.acId,jdbcType=INTEGER},
+      de_province = #{record.deProvince,jdbcType=VARCHAR},
+      de_city = #{record.deCity,jdbcType=VARCHAR},
+      de_country = #{record.deCountry,jdbcType=VARCHAR},
+      consignee = #{record.consignee,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      de_phone = #{record.dePhone,jdbcType=INTEGER},
+      de_email = #{record.deEmail,jdbcType=VARCHAR},
+      post_code = #{record.postCode,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=VARCHAR},
+      id_default = #{record.idDefault,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.originality.po.Delivery" >
+    update delivery
+    <set >
+      <if test="acId != null" >
+        ac_id = #{acId,jdbcType=INTEGER},
+      </if>
+      <if test="deProvince != null" >
+        de_province = #{deProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="deCity != null" >
+        de_city = #{deCity,jdbcType=VARCHAR},
+      </if>
+      <if test="deCountry != null" >
+        de_country = #{deCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="dePhone != null" >
+        de_phone = #{dePhone,jdbcType=INTEGER},
+      </if>
+      <if test="deEmail != null" >
+        de_email = #{deEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        post_code = #{postCode,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="idDefault != null" >
+        id_default = #{idDefault,jdbcType=TINYINT},
+      </if>
+    </set>
+    where de_id = #{deId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.originality.po.Delivery" >
+    update delivery
+    set ac_id = #{acId,jdbcType=INTEGER},
+      de_province = #{deProvince,jdbcType=VARCHAR},
+      de_city = #{deCity,jdbcType=VARCHAR},
+      de_country = #{deCountry,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      de_phone = #{dePhone,jdbcType=INTEGER},
+      de_email = #{deEmail,jdbcType=VARCHAR},
+      post_code = #{postCode,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      id_default = #{idDefault,jdbcType=TINYINT}
+    where de_id = #{deId,jdbcType=INTEGER}
+  </update>
+</mapper>

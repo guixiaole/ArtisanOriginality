@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.originality.mapper.OrderReturnMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.originality.po.OrderReturn" >
+    <id column="order_return_id" property="orderReturnId" jdbcType="INTEGER" />
+    <result column="return_id" property="returnId" jdbcType="INTEGER" />
+    <result column="o_id" property="oId" jdbcType="INTEGER" />
+    <result column="return_payable" property="returnPayable" jdbcType="DOUBLE" />
+    <result column="ac_id" property="acId" jdbcType="INTEGER" />
+    <result column="consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="return_phone" property="returnPhone" jdbcType="INTEGER" />
+    <result column="return_address" property="returnAddress" jdbcType="VARCHAR" />
+    <result column="return_province" property="returnProvince" jdbcType="VARCHAR" />
+    <result column="return_city" property="returnCity" jdbcType="VARCHAR" />
+    <result column="return_country" property="returnCountry" jdbcType="VARCHAR" />
+    <result column="return_status_id" property="returnStatusId" jdbcType="INTEGER" />
+    <result column="sale_price" property="salePrice" jdbcType="DOUBLE" />
+    <result column="return_remark" property="returnRemark" jdbcType="VARCHAR" />
+    <result column="return_time" property="returnTime" jdbcType="VARCHAR" />
+    <result column="return_reason" property="returnReason" jdbcType="VARCHAR" />
+    <result column="custom_price" property="customPrice" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_return_id, return_id, o_id, return_payable, ac_id, consignee, return_phone, 
+    return_address, return_province, return_city, return_country, return_status_id, sale_price, 
+    return_remark, return_time, return_reason, custom_price
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.originality.po.OrderReturnExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_return
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_return
+    where order_return_id = #{orderReturnId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_return
+    where order_return_id = #{orderReturnId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.originality.po.OrderReturnExample" >
+    delete from order_return
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.originality.po.OrderReturn" >
+    insert into order_return (order_return_id, return_id, o_id, 
+      return_payable, ac_id, consignee, 
+      return_phone, return_address, return_province, 
+      return_city, return_country, return_status_id, 
+      sale_price, return_remark, return_time, 
+      return_reason, custom_price)
+    values (#{orderReturnId,jdbcType=INTEGER}, #{returnId,jdbcType=INTEGER}, #{oId,jdbcType=INTEGER}, 
+      #{returnPayable,jdbcType=DOUBLE}, #{acId,jdbcType=INTEGER}, #{consignee,jdbcType=VARCHAR}, 
+      #{returnPhone,jdbcType=INTEGER}, #{returnAddress,jdbcType=VARCHAR}, #{returnProvince,jdbcType=VARCHAR}, 
+      #{returnCity,jdbcType=VARCHAR}, #{returnCountry,jdbcType=VARCHAR}, #{returnStatusId,jdbcType=INTEGER}, 
+      #{salePrice,jdbcType=DOUBLE}, #{returnRemark,jdbcType=VARCHAR}, #{returnTime,jdbcType=VARCHAR}, 
+      #{returnReason,jdbcType=VARCHAR}, #{customPrice,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.originality.po.OrderReturn" >
+    insert into order_return
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderReturnId != null" >
+        order_return_id,
+      </if>
+      <if test="returnId != null" >
+        return_id,
+      </if>
+      <if test="oId != null" >
+        o_id,
+      </if>
+      <if test="returnPayable != null" >
+        return_payable,
+      </if>
+      <if test="acId != null" >
+        ac_id,
+      </if>
+      <if test="consignee != null" >
+        consignee,
+      </if>
+      <if test="returnPhone != null" >
+        return_phone,
+      </if>
+      <if test="returnAddress != null" >
+        return_address,
+      </if>
+      <if test="returnProvince != null" >
+        return_province,
+      </if>
+      <if test="returnCity != null" >
+        return_city,
+      </if>
+      <if test="returnCountry != null" >
+        return_country,
+      </if>
+      <if test="returnStatusId != null" >
+        return_status_id,
+      </if>
+      <if test="salePrice != null" >
+        sale_price,
+      </if>
+      <if test="returnRemark != null" >
+        return_remark,
+      </if>
+      <if test="returnTime != null" >
+        return_time,
+      </if>
+      <if test="returnReason != null" >
+        return_reason,
+      </if>
+      <if test="customPrice != null" >
+        custom_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderReturnId != null" >
+        #{orderReturnId,jdbcType=INTEGER},
+      </if>
+      <if test="returnId != null" >
+        #{returnId,jdbcType=INTEGER},
+      </if>
+      <if test="oId != null" >
+        #{oId,jdbcType=INTEGER},
+      </if>
+      <if test="returnPayable != null" >
+        #{returnPayable,jdbcType=DOUBLE},
+      </if>
+      <if test="acId != null" >
+        #{acId,jdbcType=INTEGER},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="returnPhone != null" >
+        #{returnPhone,jdbcType=INTEGER},
+      </if>
+      <if test="returnAddress != null" >
+        #{returnAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="returnProvince != null" >
+        #{returnProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCity != null" >
+        #{returnCity,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCountry != null" >
+        #{returnCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="returnStatusId != null" >
+        #{returnStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="returnRemark != null" >
+        #{returnRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="returnTime != null" >
+        #{returnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="returnReason != null" >
+        #{returnReason,jdbcType=VARCHAR},
+      </if>
+      <if test="customPrice != null" >
+        #{customPrice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.originality.po.OrderReturnExample" resultType="java.lang.Integer" >
+    select count(*) from order_return
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_return
+    <set >
+      <if test="record.orderReturnId != null" >
+        order_return_id = #{record.orderReturnId,jdbcType=INTEGER},
+      </if>
+      <if test="record.returnId != null" >
+        return_id = #{record.returnId,jdbcType=INTEGER},
+      </if>
+      <if test="record.oId != null" >
+        o_id = #{record.oId,jdbcType=INTEGER},
+      </if>
+      <if test="record.returnPayable != null" >
+        return_payable = #{record.returnPayable,jdbcType=DOUBLE},
+      </if>
+      <if test="record.acId != null" >
+        ac_id = #{record.acId,jdbcType=INTEGER},
+      </if>
+      <if test="record.consignee != null" >
+        consignee = #{record.consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnPhone != null" >
+        return_phone = #{record.returnPhone,jdbcType=INTEGER},
+      </if>
+      <if test="record.returnAddress != null" >
+        return_address = #{record.returnAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnProvince != null" >
+        return_province = #{record.returnProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnCity != null" >
+        return_city = #{record.returnCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnCountry != null" >
+        return_country = #{record.returnCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnStatusId != null" >
+        return_status_id = #{record.returnStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="record.salePrice != null" >
+        sale_price = #{record.salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.returnRemark != null" >
+        return_remark = #{record.returnRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnTime != null" >
+        return_time = #{record.returnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnReason != null" >
+        return_reason = #{record.returnReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customPrice != null" >
+        custom_price = #{record.customPrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_return
+    set order_return_id = #{record.orderReturnId,jdbcType=INTEGER},
+      return_id = #{record.returnId,jdbcType=INTEGER},
+      o_id = #{record.oId,jdbcType=INTEGER},
+      return_payable = #{record.returnPayable,jdbcType=DOUBLE},
+      ac_id = #{record.acId,jdbcType=INTEGER},
+      consignee = #{record.consignee,jdbcType=VARCHAR},
+      return_phone = #{record.returnPhone,jdbcType=INTEGER},
+      return_address = #{record.returnAddress,jdbcType=VARCHAR},
+      return_province = #{record.returnProvince,jdbcType=VARCHAR},
+      return_city = #{record.returnCity,jdbcType=VARCHAR},
+      return_country = #{record.returnCountry,jdbcType=VARCHAR},
+      return_status_id = #{record.returnStatusId,jdbcType=INTEGER},
+      sale_price = #{record.salePrice,jdbcType=DOUBLE},
+      return_remark = #{record.returnRemark,jdbcType=VARCHAR},
+      return_time = #{record.returnTime,jdbcType=VARCHAR},
+      return_reason = #{record.returnReason,jdbcType=VARCHAR},
+      custom_price = #{record.customPrice,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.originality.po.OrderReturn" >
+    update order_return
+    <set >
+      <if test="returnId != null" >
+        return_id = #{returnId,jdbcType=INTEGER},
+      </if>
+      <if test="oId != null" >
+        o_id = #{oId,jdbcType=INTEGER},
+      </if>
+      <if test="returnPayable != null" >
+        return_payable = #{returnPayable,jdbcType=DOUBLE},
+      </if>
+      <if test="acId != null" >
+        ac_id = #{acId,jdbcType=INTEGER},
+      </if>
+      <if test="consignee != null" >
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="returnPhone != null" >
+        return_phone = #{returnPhone,jdbcType=INTEGER},
+      </if>
+      <if test="returnAddress != null" >
+        return_address = #{returnAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="returnProvince != null" >
+        return_province = #{returnProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCity != null" >
+        return_city = #{returnCity,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCountry != null" >
+        return_country = #{returnCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="returnStatusId != null" >
+        return_status_id = #{returnStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="salePrice != null" >
+        sale_price = #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="returnRemark != null" >
+        return_remark = #{returnRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="returnTime != null" >
+        return_time = #{returnTime,jdbcType=VARCHAR},
+      </if>
+      <if test="returnReason != null" >
+        return_reason = #{returnReason,jdbcType=VARCHAR},
+      </if>
+      <if test="customPrice != null" >
+        custom_price = #{customPrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where order_return_id = #{orderReturnId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.originality.po.OrderReturn" >
+    update order_return
+    set return_id = #{returnId,jdbcType=INTEGER},
+      o_id = #{oId,jdbcType=INTEGER},
+      return_payable = #{returnPayable,jdbcType=DOUBLE},
+      ac_id = #{acId,jdbcType=INTEGER},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      return_phone = #{returnPhone,jdbcType=INTEGER},
+      return_address = #{returnAddress,jdbcType=VARCHAR},
+      return_province = #{returnProvince,jdbcType=VARCHAR},
+      return_city = #{returnCity,jdbcType=VARCHAR},
+      return_country = #{returnCountry,jdbcType=VARCHAR},
+      return_status_id = #{returnStatusId,jdbcType=INTEGER},
+      sale_price = #{salePrice,jdbcType=DOUBLE},
+      return_remark = #{returnRemark,jdbcType=VARCHAR},
+      return_time = #{returnTime,jdbcType=VARCHAR},
+      return_reason = #{returnReason,jdbcType=VARCHAR},
+      custom_price = #{customPrice,jdbcType=DOUBLE}
+    where order_return_id = #{orderReturnId,jdbcType=INTEGER}
+  </update>
+</mapper>
