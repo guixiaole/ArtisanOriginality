@@ -9,6 +9,8 @@
     <result column="aphone" property="aphone" jdbcType="VARCHAR" />
     <result column="aaddress" property="aaddress" jdbcType="VARCHAR" />
     <result column="atel" property="atel" jdbcType="INTEGER" />
+    <result column="head" property="head" jdbcType="VARCHAR"/>
+    <result column="brief" property="brief" jdbcType="VARCHAR"/>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -240,4 +242,9 @@
       atel = #{atel,jdbcType=INTEGER}
     where a_id = #{aId,jdbcType=INTEGER}
   </update>
+  <!-- 查找所有的工匠 @guile -->
+  <select id="selectArtisan" resultMap="BaseResultMap">
+  select * from artisan
+  </select>
+
 </mapper>

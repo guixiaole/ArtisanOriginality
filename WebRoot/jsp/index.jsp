@@ -82,7 +82,7 @@
 			<h1 class="masthead-brand">匠心</h1>
 			<ul class="nav masthead-nav">
 				<li class="active"><a href="#">主页</a></li>
-				<li><a href="master.html">匠人</a></li>
+				<li><a href="${pageContext.request.contextPath }/selectArtisan.action">匠人</a></li>
 				<li><a href="#">匠铺</a></li>
 				<li><a href="#">活动</a></li>
 				<!-- Small modal -->
@@ -99,10 +99,10 @@
 							<!-- 模态框里面的内容 -->
 							<div class="login-box" id="login-box">
 								<div class="login-container" style="width: inherit;">
-									<form  action="${pageContext.request.contextPath }/accountLogin.action" method="post" class="form-signin" >
+									<form id="loginform" <%--  action="${pageContext.request.contextPath }/accountLogin.action"--%> method="post"  class="form-signin" >
 										<h2 class="form-signin-heading">登录</h2>
 										<label for="inputEmail" class="sr-only">用户名</label>
-										<input type="text" name="account_id" id="inputusername" class="form-control" placeholder="手机号/Email" required autofocus>
+										<input type="text" name="username" id="inputusername" class="form-control" placeholder="手机号/Email" required autofocus>
 										<label for="inputPassword" class="sr-only">密码</label>
 										<input type="password" name="password" id="inputPassword" class="form-control" placeholder="请输入密码" required>
 										<div class="checkbox">
@@ -110,8 +110,9 @@
 												<input type="checkbox" value="remember-me"> 记住我
 											</label>
 										</div>
-										<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+										<a class="btn btn-lg btn-primary btn-block" type="submit" onclick="request_login()">登录</a>
 									</form>
+									
 								</div> 
 							</div>
 						</div>
@@ -250,6 +251,8 @@
 	<script src="${pageContext.request.contextPath }/jsp/js/bootstrap.min.js"></script>
 	<!-- Swiper JS -->
 	<script src="${pageContext.request.contextPath }/jsp/js/swiper.min.js"></script>
+	
+	
 
 	<!-- Initialize Swiper -->
 	<script>
@@ -261,6 +264,37 @@
 			spaceBetween: 30,
 			mousewheelControl: true
 		});
+	</script>
+	<script type="text/javascript">
+	 function request_login(){
+		
+ 	 var json={
+				"acphone":$(":input[name=username]").val(),
+				"password":$("input[name=password]").val()
+		};
+
+		var postdata=JSON.stringify(json);  
+				
+					$.ajax({
+
+						type : "post",
+						url : "${pageContext.request.contextPath }/account_login.action",
+						contentType : "application/json;charset=UTF-8",
+						data : postdata,
+						async : false,
+						success : function(data) {
+							if (data.acId == null || data.acId == "") {
+								$(".checkbox")
+								.append(
+										"<div><p style='color:black;'>账号密码错误</p></div>");
+								
+							} else {
+								window.location.reload();
+							}
+						},
+
+					});
+		}
 	</script>
 </body>
 </html>

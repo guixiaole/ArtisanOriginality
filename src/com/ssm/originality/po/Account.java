@@ -23,15 +23,18 @@ public class Account {
 
     private String acemail;
 
-    public Integer getAcId() {
-        return acId;
-    }
+ 
+   
 
-    public void setAcId(Integer acId) {
-        this.acId = acId;
-    }
+	public Integer getAcId() {
+		return acId;
+	}
 
-    public Integer getaId() {
+	public void setAcId(Integer acId) {
+		this.acId = acId;
+	}
+
+	public Integer getaId() {
         return aId;
     }
 
@@ -117,5 +120,8 @@ public class Account {
 				+ password + ", head=" + head + ", balance=" + balance + ", ip=" + ip + ", addTime=" + addTime
 				+ ", acphone=" + acphone + ", acemail=" + acemail + "]";
 	}
-    
+
+	
+
+	
 }

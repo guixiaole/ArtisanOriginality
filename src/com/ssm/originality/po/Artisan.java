@@ -14,8 +14,29 @@ public class Artisan {
     private String aaddress;
 
     private Integer atel;
+    
+    private String head;//后加入的头像
 
-    public Integer getaId() {
+    private String brief;//后加入的简介
+    
+    
+    public String getBrief() {
+		return brief;
+	}
+
+	public void setBrief(String brief) {
+		this.brief = brief;
+	}
+
+	public String getHead() {
+		return head;
+	}
+
+	public void setHead(String head) {
+		this.head = head;
+	}
+
+	public Integer getaId() {
         return aId;
     }
 

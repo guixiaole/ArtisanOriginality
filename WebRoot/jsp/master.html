@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>匠人</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/carousel.css" rel="stylesheet">
+	<link href="css/header-nav.css" rel="stylesheet">
+	<link href="css/master.css" rel="stylesheet">
+</style>
+</head>
+<body>
+	<!-- Header --> 	
+	<div class="masthead clearfix" style="z-index: 1;">
+		<div class="inner">
+			<h1 class="masthead-brand">匠心</h1>
+			<ul class="nav masthead-nav">
+				<li><a href="index.html">主页</a></li>
+				<li class="active"><a href="#">匠人</a></li>
+				<li><a href="#">匠铺</a></li>
+				<li><a href="#">活动</a></li>
+				<!-- Small modal -->
+				<li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login-modal">登录</button></li>
+				<li><button type="button" class="btn btn-success" data-toggle="modal" data-target="#register-modal">注册</button></li>
+				<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<!-- 模态框里面的内容 -->
+							<div class="login-box" id="login-box">
+								<div class="login-container" style="width: inherit;">
+									<form class="form-signin">
+										<h2 class="form-signin-heading">登录</h2>
+										<label for="inputEmail" class="sr-only">用户名</label>
+										<input type="text" id="inputusername" class="form-control" placeholder="手机号/Email" required autofocus>
+										<label for="inputPassword" class="sr-only">密码</label>
+										<input type="password" id="inputPassword" class="form-control" placeholder="请输入密码" required>
+										<div class="checkbox">
+											<label class="remember-me">
+												<input type="checkbox" value="remember-me"> 记住我
+											</label>
+										</div>
+										<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+									</form>
+								</div> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+								<ul id="myTabs" class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active" id="tab-text-regi"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true" style="color: #000;">短信注册</a></li>
+									<li role="presentation" class="" id="tab-email-regi"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" aria-expanded="false" style="color: #000;">邮箱注册</a></li>
+								</ul>
+								<div id="myTabContent" class="tab-content">
+									<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+										<div class="register-box" id="text-register-box">
+											<div class="register-container" style="width: inherit;">
+												<form class="form-signin">
+													<h2 class="form-signin-heading">短信注册</h2>
+													<label for="inputText" class="sr-only">手机号</label>
+													<input type="text" id="inputText" class="form-control" placeholder="请输入手机号" required autofocus>
+													<br>
+													<label for="inputPassword" class="sr-only">验证码</label>
+													<input type="text" id="inputverify" class="form-control" placeholder="验证码" required>
+													<a href="#" class="btn btn-sm btn-info" id="btn-getverify">获取验证码</a>
+													<button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+												</form>
+											</div> 
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+										<div class="register-box" id="email-register-box">
+											<div class="register-container" style="width: inherit;">
+												<form class="form-signin">
+													<h2 class="form-signin-heading">Email注册</h2>
+													<label for="inputEmail" class="sr-only">Email</label>
+													<input type="email" id="inputEmail" class="form-control" placeholder="Email地址" required autofocus>
+													<br>
+													<input type="password" id="newPassword" class="form-control" placeholder="密码" required autofocus>
+													<br>
+													<input type="password" id="RetypePassword" class="form-control" placeholder="确认密码" required autofocus>
+													<br>
+													<button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+												</form>
+											</div> 
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</ul>
+		</div>
+	</div>
+	<!-- 内容 -->
+	<div class="main-container">
+		  <!-- Carousel
+		  ================================================== -->
+		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+		  	<!-- Indicators -->
+		  	<ol class="carousel-indicators">
+		  		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		  		<li data-target="#myCarousel" data-slide-to="1"></li>
+		  		<li data-target="#myCarousel" data-slide-to="2"></li>
+		  	</ol>
+		  	<div class="carousel-inner" role="listbox">
+		  		<div class="item active">
+		  			<img src="images/de55e0523eec048dee1b793a8e427a85.jpg" alt="First slide">
+		  		</div>
+		  		<div class="item">
+		  			<img src="images/de55e0523eec048dee1b793a8e427a85.jpg" alt="Second slide">
+		  		</div>
+		  		<div class="item">
+		  			<img src="images/de55e0523eec048dee1b793a8e427a85.jpg" alt="Third slide">
+		  		</div>
+		  	</div>
+		  	<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		  		<span class="glyphicon glyphicon-chevron-left"></span>
+		  		<span class="sr-only">Previous</span>
+		  	</a>
+		  	<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		  		<span class="glyphicon glyphicon-chevron-right"></span>
+		  		<span class="sr-only">Next</span>
+		  	</a>
+		  </div>
+
+
+		  <div class="container marketing">
+
+		  	<!-- Three columns of text below the carousel -->
+		  	<div class="row">
+		  		<div class="col-lg-4">
+		  			<img class="img-circle" src="images/jiangxin-red.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+		  			<h2>Heading</h2>
+		  			<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+		  			<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		  		</div><!-- /.col-lg-4 -->
+		  		<div class="col-lg-4">
+		  			<img class="img-circle" src="images/1-13-1.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+		  			<h2>Heading</h2>
+		  			<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+		  			<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		  		</div><!-- /.col-lg-4 -->
+		  		<div class="col-lg-4">
+		  			<img class="img-circle" src="images/1-11-1.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+		  			<h2>Heading</h2>
+		  			<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+		  			<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		  		</div><!-- /.col-lg-4 -->
+		  	</div><!-- /.row -->
+		  	<div class="row">
+		  		<div class="col-lg-4">
+		  			<img class="img-circle" src="images/jiangxin-red.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+		  			<h2>Heading</h2>
+		  			<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+		  			<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		  		</div>/.col-lg-4
+		  		<div class="col-lg-4">
+		  			<img class="img-circle" src="images/jiangxin-red.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+		  			<h2>Heading</h2>
+		  			<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+		  			<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		  		</div>/.col-lg-4
+		  		<div class="col-lg-4">
+		  			<img class="img-circle" src="images/jiangxin-red.png" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+		  			<h2>Heading</h2>
+		  			<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+		  			<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		  		</div>/.col-lg-4
+		  	</div>
+			
+
+		  	<div class="row featurette">
+		  		<div class="col-md-7">
+		  			<h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+		  			<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+		  		</div>
+		  		<div class="col-md-5">
+		  			<img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="500x500" src="images/e88ffbae8e7df60abdbe6de414c475b7.jpg" data-holder-rendered="true">
+		  		</div>
+		  	</div>
+		  </div>
+
+		  <p>
+		  	<hr class="featurette-divider">
+		  	<a class="btn btn-default" href="#" role="button">更多匠人 »</a>
+		  </p>
+		  <hr class="featurette-divider">
+
+
+		<!-- footer -->
+		  <div class="mastfoot">
+		  	<div class="inner">
+		  		<p>CopyRight by @<a href="index.html">jiangxin</a>, by @gwj.</p>
+		  	</div>
+		  </div>
+
+		  <script src="js/jquery.min.js"></script>
+		  <script src="js/bootstrap.min.js"></script>
+		  <!-- Initialize Swiper -->
+		  <script>
+		  	$(".masthead-brand").click(function(){
+			// alert("666");
+			location.href = "index.html";
+		});
+	</script>
+</body>
+</html>

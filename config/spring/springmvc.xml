@@ -48,4 +48,6 @@
 	<mvc:resources location="/jsp/js/" mapping="/jsp/js/**" />
 	<mvc:resources location="/jsp/posters/" mapping="/jsp/posters/**" />
 	<mvc:resources location="/jsp/videos/" mapping="/jsp/videos/**" />
+	<mvc:resources location="/jsp/" mapping="/jsp/**" />
+	
 </beans>

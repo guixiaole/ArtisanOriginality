@@ -27,4 +27,8 @@ public interface ArtisanMapper {
     int updateByPrimaryKeySelective(Artisan record);
 
     int updateByPrimaryKey(Artisan record);
+   //查找所有的匠人
+     List<Artisan> selectArtisan()throws Exception;
+     //查找单个工匠
+     Artisan selectOne(Integer ids)throws Exception;
 }

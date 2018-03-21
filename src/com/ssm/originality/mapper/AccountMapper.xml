@@ -303,9 +303,8 @@
     where ac_id = #{acId,jdbcType=INTEGER}
   </update>
    <!-- 当登录查询的时候，sql语句会根据 -->
-  <select id="loginByUser" parameterType="com.ssm.originality.po.Account" resultType="com.ssm.originality.po.Account">
+  <select id="loginByUser" parameterType="com.ssm.originality.po.Account" resultMap="BaseResultMap">
   SELECT * FROM account WHERE (acphone=#{acphone} or acemail=#{acemail}) AND `password`=#{password}
   </select>
-  
   
 </mapper>
